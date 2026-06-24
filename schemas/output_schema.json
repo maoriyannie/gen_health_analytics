@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Gen-Health Analytics Output",
+  "description": "Output schema for the hereditary health risk engine",
+  "type": "object",
+  "properties": {
+    "analysis_version": { "type": "string" },
+    "analysis_timestamp": { "type": "string", "format": "date-time" },
+    "proband_age": { "type": "integer" },
+    "proband_sex": { "type": "string" },
+    "conditions": {
+      "type": "object",
+      "description": "Keyed by condition name",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "condition": { "type": "string" },
+          "relative_risk_ratio": { "type": "number", "description": "Risk vs general population. 1.0 = baseline." },
+          "genetic_predisposition_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "environmental_risk_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "correlation_score": { "type": "number", "minimum": 0, "maximum": 100 },
+          "affected_relatives_count": { "type": "integer" },
+          "onset_trend": {
+            "type": "object",
+            "properties": {
+              "trend_classification": {
+                "type": "string",
+                "enum": ["strongly_accelerating", "accelerating", "stable", "decelerating", "insufficient_data"]
+              },
+              "slope": { "type": ["number", "null"], "description": "Years younger per generation. Negative = earlier onset." },
+              "generation_delta": { "type": ["number", "null"] },
+              "projected_proband_age": { "type": ["number", "null"] },
+              "data_points_used": { "type": "integer" },
+              "raw_timeline": { "type": "array" }
+            }
+          },
+          "cancer_flags": { "type": "array" }
+        }
+      }
+    },
+    "red_flag_alerts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "alert_id": { "type": "string" },
+          "condition": { "type": "string" },
+          "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+          "trigger_reason": { "type": "string" },
+          "genetic_predisposition_score": { "type": "integer" },
+          "environmental_risk_score": { "type": "integer" },
+          "recommended_action": { "type": "string" }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "highest_priority_condition": { "type": ["string", "null"] },
+        "total_alerts": { "type": "integer" },
+        "high_priority_count": { "type": "integer" },
+        "medium_priority_count": { "type": "integer" },
+        "low_priority_count": { "type": "integer" },
+        "top_genetic_score": { "type": "integer" },
+        "top_environmental_score": { "type": "integer" }
+      }
+    }
+  }
+}

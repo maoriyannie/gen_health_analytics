@@ -1,0 +1,60 @@
+{
+  "proband_age": 38,
+  "proband_sex": "female",
+  "conditions_of_interest": ["diabetes"],
+  "family_members": [
+    {
+      "relative_id": "F001",
+      "name": "Robert",
+      "relationship": "father",
+      "sex": "male",
+      "is_deceased": false,
+      "conditions": [
+        { "condition_name": "diabetes", "age_of_onset": 50, "confirmed": true }
+      ],
+      "lifestyle_flags": {
+        "HighBP": true,
+        "PhysInactivity": true,
+        "Obesity": true
+      }
+    },
+    {
+      "relative_id": "F002",
+      "name": "Helen",
+      "relationship": "paternal_grandmother",
+      "sex": "female",
+      "is_deceased": true,
+      "conditions": [
+        { "condition_name": "diabetes", "age_of_onset": 58, "confirmed": true }
+      ],
+      "lifestyle_flags": {
+        "HighBP": true,
+        "PhysInactivity": true
+      }
+    },
+    {
+      "relative_id": "F003",
+      "name": "George",
+      "relationship": "maternal_grandfather",
+      "sex": "male",
+      "is_deceased": true,
+      "conditions": [
+        { "condition_name": "diabetes", "age_of_onset": 64, "confirmed": true }
+      ],
+      "lifestyle_flags": {
+        "HighChol": true
+      }
+    },
+    {
+      "relative_id": "F004",
+      "name": "Diana",
+      "relationship": "paternal_great_grandmother",
+      "sex": "female",
+      "is_deceased": true,
+      "conditions": [
+        { "condition_name": "diabetes", "age_of_onset": 70, "confirmed": true }
+      ],
+      "lifestyle_flags": {}
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "proband_age": 30,
+  "proband_sex": "male",
+  "conditions_of_interest": ["diabetes", "heart_disease"],
+  "family_members": [
+    {
+      "relative_id": "F001",
+      "name": "Patricia",
+      "relationship": "mother",
+      "sex": "female",
+      "is_deceased": false,
+      "conditions": [],
+      "lifestyle_flags": {}
+    },
+    {
+      "relative_id": "F002",
+      "name": "William",
+      "relationship": "father",
+      "sex": "male",
+      "is_deceased": false,
+      "conditions": [],
+      "lifestyle_flags": {}
+    },
+    {
+      "relative_id": "F003",
+      "name": "Edna",
+      "relationship": "maternal_grandmother",
+      "sex": "female",
+      "is_deceased": true,
+      "conditions": [],
+      "lifestyle_flags": {}
+    },
+    {
+      "relative_id": "F004",
+      "name": "Harold",
+      "relationship": "paternal_grandfather",
+      "sex": "male",
+      "is_deceased": true,
+      "conditions": [],
+      "lifestyle_flags": {}
+    }
+  ]
+}

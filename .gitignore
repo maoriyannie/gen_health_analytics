@@ -1,0 +1,48 @@
+# Datasets — large CSVs used offline to derive constants only, not loaded at runtime
+datasets/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# Pipenv
+# Keep Pipfile.lock in version control for reproducible installs
+# Uncomment below to ignore it:
+# Pipfile.lock
+
+# Pytest / Playwright
+.pytest_cache/
+playwright-report/
+test-results/
+*.xml
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/

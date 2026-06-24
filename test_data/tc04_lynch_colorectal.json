@@ -1,0 +1,61 @@
+{
+  "proband_age": 45,
+  "proband_sex": "male",
+  "conditions_of_interest": ["colorectal_cancer"],
+  "family_members": [
+    {
+      "relative_id": "F001",
+      "name": "Thomas",
+      "relationship": "father",
+      "sex": "male",
+      "is_deceased": true,
+      "conditions": [
+        {
+          "condition_name": "colorectal_cancer",
+          "age_of_onset": 48,
+          "confirmed": true,
+          "cause_of_death": "colorectal cancer"
+        }
+      ],
+      "lifestyle_flags": {}
+    },
+    {
+      "relative_id": "F002",
+      "name": "Gerald",
+      "relationship": "paternal_grandfather",
+      "sex": "male",
+      "is_deceased": true,
+      "conditions": [
+        {
+          "condition_name": "colorectal_cancer",
+          "age_of_onset": 58,
+          "confirmed": true,
+          "cause_of_death": true
+        }
+      ],
+      "lifestyle_flags": {}
+    },
+    {
+      "relative_id": "F003",
+      "name": "Stephen",
+      "relationship": "paternal_uncle",
+      "sex": "male",
+      "is_deceased": false,
+      "conditions": [
+        { "condition_name": "colorectal_cancer", "age_of_onset": 46, "confirmed": true }
+      ],
+      "lifestyle_flags": {}
+    },
+    {
+      "relative_id": "F004",
+      "name": "Carol",
+      "relationship": "paternal_aunt",
+      "sex": "female",
+      "is_deceased": false,
+      "conditions": [
+        { "condition_name": "colorectal_cancer", "age_of_onset": 55, "confirmed": true }
+      ],
+      "lifestyle_flags": {}
+    }
+  ]
+}

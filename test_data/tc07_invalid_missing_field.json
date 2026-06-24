@@ -1,0 +1,13 @@
+{
+  "proband_age": 40,
+  "proband_sex": "male",
+  "conditions_of_interest": [],
+  "family_members": [
+    {
+      "relationship": "father",
+      "conditions": [
+        { "condition_name": "diabetes", "age_of_onset": 55 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Gen-Health Analytics Family Input",
+  "description": "Input schema for the hereditary health risk engine",
+  "type": "object",
+  "required": ["proband_age", "proband_sex", "conditions_of_interest", "family_members"],
+  "properties": {
+    "proband_age": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 120,
+      "description": "Age of the person being assessed (the user)"
+    },
+    "proband_sex": {
+      "type": "string",
+      "enum": ["male", "female", "other", "unknown"],
+      "description": "Biological sex of the person being assessed"
+    },
+    "proband_ethnicity": {
+      "type": "string",
+      "description": "Ancestry/ethnic background of the proband. Used to apply ethnicity-specific risk modifiers (e.g. BRCA founder mutations in Ashkenazi Jewish populations). Examples: ashkenazi_jewish, icelandic, other."
+    },
+    "conditions_of_interest": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "List of conditions to analyze (e.g. diabetes, heart_disease, breast_cancer)"
+    },
+    "family_members": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["relationship"],
+        "properties": {
+          "relative_id": { "type": "string" },
+          "name": { "type": "string" },
+          "relationship": {
+            "type": "string",
+            "description": "e.g. father, maternal_grandmother, paternal_great_grandmother, sister"
+          },
+          "generation_index": {
+            "type": "integer",
+            "description": "0=proband, -1=parents, -2=grandparents, -3=great-grandparents, +1=children. Inferred from relationship if omitted."
+          },
+          "sex": {
+            "type": "string",
+            "enum": ["male", "female", "other", "unknown"]
+          },
+          "is_deceased": { "type": "boolean" },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["condition_name"],
+              "properties": {
+                "condition_name": { "type": "string" },
+                "age_of_onset": { "type": ["integer", "null"], "minimum": 0 },
+                "confirmed": { "type": "boolean", "default": true },
+                "cause_of_death": {
+                  "description": "Set to true if this condition was the confirmed cause of death, or a string describing the cause (e.g. 'myocardial infarction').",
+                  "oneOf": [
+                    { "type": "boolean" },
+                    { "type": "string" }
+                  ],
+                  "default": false
+                }
+              }
+            }
+          },
+          "lifestyle_flags": {
+            "type": "object",
+            "description": "CVD flags: Smoking, Obesity, Sedentary_Lifestyle, High_BP, High_Cholesterol, Chronic_Stress, Diabetes. Diabetes flags: HighBP, HighChol, Smoker, PhysInactivity, HvyAlcoholConsump.",
+            "additionalProperties": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "proband_age": 34,
+      "proband_sex": "female",
+      "proband_ethnicity": "ashkenazi_jewish",
+      "conditions_of_interest": ["diabetes", "heart_disease", "breast_cancer"],
+      "family_members": [
+        {
+          "relative_id": "F001",
+          "name": "John",
+          "relationship": "father",
+          "sex": "male",
+          "is_deceased": false,
+          "conditions": [
+            { "condition_name": "diabetes", "age_of_onset": 52, "confirmed": true }
+          ],
+          "lifestyle_flags": {
+            "Obesity": true,
+            "Sedentary_Lifestyle": true,
+            "High_BP": true,
+            "HighBP": true,
+            "PhysInactivity": true
+          }
+        },
+        {
+          "relative_id": "F002",
+          "name": "Mary",
+          "relationship": "paternal_grandmother",
+          "sex": "female",
+          "is_deceased": true,
+          "conditions": [
+            { "condition_name": "diabetes", "age_of_onset": 61, "confirmed": true },
+            { "condition_name": "heart_disease", "age_of_onset": 68, "cause_of_death": "myocardial infarction" }
+          ],
+          "lifestyle_flags": {
+            "Obesity": true,
+            "Sedentary_Lifestyle": true
+          }
+        },
+        {
+          "relative_id": "F003",
+          "name": "Rosa",
+          "relationship": "maternal_great_grandmother",
+          "sex": "female",
+          "is_deceased": true,
+          "conditions": [
+            { "condition_name": "breast_cancer", "age_of_onset": 55, "confirmed": true, "cause_of_death": true }
+          ],
+          "lifestyle_flags": {}
+        }
+      ]
+    }
+  ]
+}

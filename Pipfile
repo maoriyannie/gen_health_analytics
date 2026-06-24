@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pandas = ">=2.0.0"
+numpy = ">=1.24.0"
+jsonschema = ">=4.17.0"
+streamlit = ">=1.35.0"
+plotly = ">=5.20.0"
+[dev-packages]
+pytest-playwright = "*"
+
+[requires]
+python_version = "3.14"

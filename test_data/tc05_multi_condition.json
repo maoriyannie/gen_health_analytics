@@ -1,0 +1,83 @@
+{
+  "proband_age": 50,
+  "proband_sex": "female",
+  "conditions_of_interest": ["diabetes", "heart_disease", "breast_cancer"],
+  "family_members": [
+    {
+      "relative_id": "F001",
+      "name": "Henry",
+      "relationship": "father",
+      "sex": "male",
+      "is_deceased": true,
+      "conditions": [
+        { "condition_name": "diabetes", "age_of_onset": 55, "confirmed": true },
+        {
+          "condition_name": "heart_disease",
+          "age_of_onset": 62,
+          "confirmed": true,
+          "cause_of_death": "myocardial infarction"
+        }
+      ],
+      "lifestyle_flags": {
+        "HighBP": true,
+        "HighChol": true,
+        "PhysInactivity": true,
+        "Smoking": true,
+        "High_BP": true,
+        "High_Cholesterol": true,
+        "Obesity": true
+      }
+    },
+    {
+      "relative_id": "F002",
+      "name": "Eleanor",
+      "relationship": "mother",
+      "sex": "female",
+      "is_deceased": false,
+      "conditions": [
+        { "condition_name": "breast_cancer", "age_of_onset": 48, "confirmed": true },
+        { "condition_name": "diabetes", "age_of_onset": 60, "confirmed": true }
+      ],
+      "lifestyle_flags": {
+        "HighBP": true,
+        "PhysInactivity": true
+      }
+    },
+    {
+      "relative_id": "F003",
+      "name": "Arnold",
+      "relationship": "paternal_grandfather",
+      "sex": "male",
+      "is_deceased": true,
+      "conditions": [
+        { "condition_name": "diabetes", "age_of_onset": 62, "confirmed": true },
+        { "condition_name": "heart_disease", "age_of_onset": 70, "confirmed": true, "cause_of_death": true }
+      ],
+      "lifestyle_flags": {
+        "Smoking": true
+      }
+    },
+    {
+      "relative_id": "F004",
+      "name": "Gloria",
+      "relationship": "maternal_grandmother",
+      "sex": "female",
+      "is_deceased": true,
+      "conditions": [
+        { "condition_name": "breast_cancer", "age_of_onset": 55, "confirmed": true, "cause_of_death": true }
+      ],
+      "lifestyle_flags": {}
+    },
+    {
+      "relative_id": "F005",
+      "name": "Betty",
+      "relationship": "sister",
+      "sex": "female",
+      "is_deceased": false,
+      "conditions": [
+        { "condition_name": "breast_cancer", "age_of_onset": 44, "confirmed": true }
+      ],
+      "lifestyle_flags": {}
+    }
+  ]
+}
