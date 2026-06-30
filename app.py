@@ -101,6 +101,7 @@ def _render_sidebar():
     st.sidebar.title("Family Health Input")
 
     st.sidebar.subheader("Your Info (Proband)")
+    proband_name = st.sidebar.text_input("Full name", placeholder="e.g. Jane Smith")
     proband_age = st.sidebar.number_input("Your age", min_value=1, max_value=120, value=34)
     proband_sex = st.sidebar.selectbox("Biological sex", ["female", "male", "other", "unknown"])
     proband_ethnicity = st.sidebar.selectbox(
@@ -121,10 +122,12 @@ def _render_sidebar():
 
     # Add / remove members
     if st.sidebar.button("+ Add family member"):
+        used = {m["relationship"] for m in st.session_state.members}
+        default_rel = next((r for r in RELATIONSHIPS if r not in used), RELATIONSHIPS[0])
         st.session_state.members.append({
             "name": "",
-            "relationship": "father",
-            "sex": "male",
+            "relationship": default_rel,
+            "sex": RELATIONSHIP_SEX.get(default_rel, "unknown"),
             "is_deceased": False,
             "conditions": [],
             "lifestyle_flags": {},
@@ -210,7 +213,7 @@ def _render_sidebar():
                 st.session_state.members.pop(i)
                 st.rerun()
 
-    return proband_age, proband_sex, proband_ethnicity, selected_conditions
+    return proband_name, proband_age, proband_sex, proband_ethnicity, selected_conditions
 
 
 # ---------------------------------------------------------------------------
@@ -588,7 +591,7 @@ def main():
     )
     _init_state()
 
-    proband_age, proband_sex, proband_ethnicity, selected_conditions = _render_sidebar()
+    proband_name, proband_age, proband_sex, proband_ethnicity, selected_conditions = _render_sidebar()
 
     st.title("Gen-Health Analytics")
     st.caption("Hereditary Risk & Chronic Disease Predisposition Dashboard")
@@ -737,6 +740,8 @@ def main():
 
     # Summary row
     st.divider()
+    if proband_name:
+        st.markdown(f"## Patient: {proband_name}")
     _render_summary(result)
 
     tab_risk, tab_trend, tab_tree, tab_alerts, tab_json = st.tabs(
